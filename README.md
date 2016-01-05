@@ -1,8 +1,9 @@
+[![Build Status](https://travis-ci.org/zavalit/StaticHtmlWebpackPlugin.svg)](http://travis-ci.org/zavalit/StaticHtmlWebpackPlugin)
+
 # Yaml and Markdown webpack loader.
 
 ### Why
-Sometimes you want generate a complete html page out of your markdown file, but markdown is just not enough for an html page, you also need a bunch of meta information about your page, like *title* and etc., that you want to control somehow. For that purpose you are know enabled to do it like this:
-
+Sometimes you want to generate a complete html page out of your markdown file, but markdown is just not enough for an html page, you also need a bunch of meta information about your page (like *title* and etc.), that you want to control somehow. For that purpose you are know able to do it like this:
 
 ```
 ---
@@ -15,7 +16,7 @@ head:
  your awesome markdown content
 
 ```
-The area between two ```---``` is nothing else as a Yaml, and everything below is your actual markdown.
+The area between two ```---``` is nothing else as a **Yaml** and everything below is your actual **Markdown**.
 
 An output that will be generated is equal to a following JSON object:
 ```
