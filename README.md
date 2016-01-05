@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/zavalit/yaml-markdown-loader.svg)](https://github.com/zavalit/yaml-markdown-loader)
+[![Build Status](https://travis-ci.org/zavalit/yaml-markdown-loader.svg)](https://travis-ci.org/zavalit/yaml-markdown-loader)
 # Yaml and Markdown webpack loader.
 
 ### Why
