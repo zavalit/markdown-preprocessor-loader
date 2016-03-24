@@ -1,58 +1,72 @@
 var marked = require("marked"),
-    yaml = require("js-yaml");
+    loaderUtils = require("loader-utils"),
+    coursesPygmentHighlight = require("./repl-render.js").coursesPygmentHighlight,
+    pygmentHighlight = require("./repl-render.js").pygmentHighlight,
+    replCodeExtension = require("./repl-render.js").replCodeExtension,
+    splitByMeta = require('./yaml-render.js').splitByMeta;
 
 Object.assign = Object.assign || require('object-assign');
 
-module.exports = function (yamlmarkdown) {
 
-    var proc = new stringProcessor(yamlmarkdown);
+module.exports = function (markdownString) {
 
-    proc.yamlToMeta()
+    var loaderCallback = this.async();
 
-    proc.markdownToHtml()
+    var options = buildOptions(this.query);
 
-    // raw loader part
-    var content = proc.getMetaAndHtml();
+    var data = splitByMeta(markdownString, /^---([\s\S]*?)---/)
 
-    this.cacheable && this.cacheable();
+    var sp = new stringProcessor(data.meta, data.tail);
 
-    this.value = content;
+    sp.exec(options, loaderCallback)
 
-    return "module.exports = " + JSON.stringify(content);
 };
 
-
-function stringProcessor(string)
+function buildOptions(query)
 {
-  this.string = string;
-  this.yamlBlockRegEx = /^---([\s\S]*?)---/;
-}
+  var query = loaderUtils.parseQuery(query);
+  // default option
+  var options = {
+      renderer: new marked.Renderer(),
+  };
 
-stringProcessor.prototype.yamlToMeta = function(){
+  options = Object.assign({}, options, query);
 
-  var yamlData = this.string.match(this.yamlBlockRegEx);
-  var metaData = null;
-
-  if(yamlData !== null && typeof(yamlData[1]) === "string"){
-    metaData = yamlData[1];
+  if(options.codeRenderer){
+    options.renderer.code = eval(options.codeRenderer);
   }
-
-  try {
-    this.meta = yaml.safeLoad(metaData);
-  } catch (e) {
-    throw e;
+  if(options.highlight){
+    options.highlight = eval(options.highlight)
+  }else{
+    options.highlight = pygmentHighlight;
   }
+  return options;
+}
+
+
+
+function stringProcessor(meta, md)
+{
+  this.meta = meta;
+  this.md = md;
+}
+
+
+stringProcessor.prototype.exec = function(options, loaderCallback) {
+
+  var self = this;
+
+  marked.setOptions(options);
+
+  marked(self.md, function(err, out){
+    self.html = out;
+    loaderCallback(err, self.toJson());
+  });
 
 }
 
-stringProcessor.prototype.markdownToHtml = function(){
+stringProcessor.prototype.toJson = function() {
 
-  var markdown = this.string.replace(this.yamlBlockRegEx, '');
-  this.html = marked(markdown);
-}
-
-stringProcessor.prototype.getMetaAndHtml = function(){
-
-  return Object.assign({meta: this.meta}, {html: this.html})
+  return JSON.stringify({html:this.html, meta:this.meta});
 
 }
