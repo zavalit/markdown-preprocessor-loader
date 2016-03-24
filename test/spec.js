@@ -42,7 +42,7 @@ function webpackRunner(entryFile, check, done){
     },
     module: {
       loaders: [
-        {test:/\.md$/, loader:pathToLoader}
+        {test:/\.md$/, loader: "json!"+pathToLoader}
       ]
     }
   });

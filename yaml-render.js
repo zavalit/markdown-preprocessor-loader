@@ -25,6 +25,9 @@ function extractMeta(str, cb, yamlBlockRegEx)
   }
 
   var metaData = str.match(yamlBlockRegEx);
+  if(!metaData)
+    return null;
+
   var meta = yaml.safeLoad(metaData[1]);
 
   return meta;
