@@ -1,4 +1,4 @@
-var marked = require("marked"),
+var marked = require("section-marked"),
     loaderUtils = require("loader-utils"),
     coursesPygmentHighlight = require("./repl-render.js").coursesPygmentHighlight,
     pygmentHighlight = require("./repl-render.js").pygmentHighlight,
