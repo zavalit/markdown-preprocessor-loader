@@ -1,6 +1,6 @@
 {
   "name": "yaml-markdown-loader",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Loader that parses markdown to html as well as document meta information defined in yaml format",
   "main": "index.js",
   "directories": {
