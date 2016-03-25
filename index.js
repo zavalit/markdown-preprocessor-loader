@@ -20,6 +20,8 @@ module.exports = function (markdownString) {
 
     sp.exec(options, loaderCallback)
 
+
+
 };
 
 function buildOptions(query)
@@ -28,6 +30,7 @@ function buildOptions(query)
   // default option
   var options = {
       renderer: new marked.Renderer(),
+      section_depth: 1
   };
 
   options = Object.assign({}, options, query);
