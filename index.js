@@ -29,8 +29,7 @@ function buildOptions(query)
   var query = loaderUtils.parseQuery(query);
   // default option
   var options = {
-      renderer: new marked.Renderer(),
-      section_depth: 1
+      renderer: new marked.Renderer()
   };
 
   options = Object.assign({}, options, query);
