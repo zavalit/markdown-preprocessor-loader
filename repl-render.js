@@ -11,7 +11,7 @@ module.exports.pygmentHighlight = pygmentHighlight;
 
 module.exports.coursesPygmentHighlight = function (code, lang, callback){
         var extendedCodes = ['repl', 'editor', 'editor+repl'];
-        if(extendedCodes.indexOf(lang.toLowerCase())>=0) {
+        if(typeof(lang) === "undefined" || extendedCodes.indexOf(lang.toLowerCase())>=0) {
           callback(null, code);
           return;
         }
@@ -19,33 +19,32 @@ module.exports.coursesPygmentHighlight = function (code, lang, callback){
         pygmentHighlight(code, lang, callback);
   };
 
-
-
-module.exports.replCodeExtension = function(code, lang, escaped) {
+function replCodeExtension(code, lang, escaped) {
 
 
     if (!lang) {
       return '<pre><code>'
-        + (escaped ? code : escape(code, true))
+        + code
         + '\n</code></pre>';
     }
 
     var markup = "";
-
+    var codeIndex = getCodeIndex();
     switch (lang.toLowerCase()) {
       case 'repl':
+
       var data = splitByMeta(code);
-      markup = '<div id="repl_' +'" class="repl" data-meta="'+ escape(JSON.stringify(data.meta)) +'">'
-        + data.tail
+      markup = '<div id="repl_'+ codeIndex +'" class="repl" data-meta="'+ escapeJson(JSON.stringify(data.meta)) +'">'
+        + escapeContent(data.tail)
         + '\n</div>';
         break;
       case 'editor+repl':
       var data = splitByMeta(code);
-      markup = '<div id="editor_'
+      markup = '<div id="editor_'+ codeIndex
         + '" class="editor" >'
-        + data.tail
+        + escapeContent(data.tail)
         + '\n</div>'
-        + '\n<div id="repl_' +'" class="repl" data-meta="'+ escape(JSON.stringify(data.meta)) +'">'
+        + '\n<div id="repl_' + codeIndex  +'" class="repl" data-meta="'+ escapeJson(JSON.stringify(data.meta)) +'">'
         + '\n</div>';
       break;
       default:
@@ -60,3 +59,25 @@ module.exports.replCodeExtension = function(code, lang, escaped) {
     return markup;
 
 }
+
+function getCodeIndex(){
+  if(typeof(this.codeIndex) === "undefined"){
+    this.codeIndex = 0;
+  }
+  return ++this.codeIndex;
+}
+
+
+function escapeJson(json) {
+  return json
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function escapeContent(content){
+  return  content.replace(/</g, '&lt;');
+}
+
+
+
+module.exports.replCodeExtension = replCodeExtension;

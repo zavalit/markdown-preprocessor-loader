@@ -20,8 +20,6 @@ module.exports = function (markdownString) {
 
     sp.exec(options, loaderCallback)
 
-
-
 };
 
 function buildOptions(query)
@@ -40,7 +38,7 @@ function buildOptions(query)
   if(options.highlight){
     options.highlight = eval(options.highlight)
   }else{
-    options.highlight = pygmentHighlight;
+    optionhighlight = pygmentHighlight;
   }
   return options;
 }
