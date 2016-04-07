@@ -29,22 +29,24 @@ function replCodeExtension(code, lang, escaped) {
     }
 
     var markup = "";
-    var codeIndex = getCodeIndex();
+    var idSuffix = getIdSuffix(code);
     switch (lang.toLowerCase()) {
       case 'repl':
 
       var data = splitByMeta(code);
-      markup = '<div id="repl_'+ codeIndex +'" class="repl" data-meta="'+ escapeJson(JSON.stringify(data.meta)) +'">'
+      markup = '<div id="repl_'+ idSuffix +'" class="repl" data-meta="'+ escapeJson(JSON.stringify(data.meta)) +'">'
         + escapeContent(data.tail)
         + '\n</div>';
         break;
       case 'editor+repl':
       var data = splitByMeta(code);
-      markup = '<div id="editor_'+ codeIndex
+
+      markup = '<div id="editor_'+ idSuffix
         + '" class="editor" >'
         + escapeContent(data.tail)
         + '\n</div>'
-        + '\n<div id="repl_' + codeIndex  +'" class="repl" data-meta="'+ escapeJson(JSON.stringify(data.meta)) +'">'
+        + '\n<div id="repl_' + idSuffix  +'" class="repl" data-meta="'+ escapeJson(JSON.stringify(data.meta)) +'">'
+
         + '\n</div>';
       break;
       default:
@@ -57,6 +59,20 @@ function replCodeExtension(code, lang, escaped) {
     }
 
     return markup;
+
+}
+
+
+function getIdSuffix(code){
+  var idSuffix = getCodeIndex();
+
+  var data = splitByMeta(code);
+
+  if(data && data.meta && data.meta.id_suffix) {
+    idSuffix = data.meta.id_suffix;
+  }
+
+  return idSuffix;
 
 }
 
