@@ -3,7 +3,6 @@ var splitByMeta = require('./yaml-render.js').splitByMeta;
 function pygmentHighlight(code, lang, callback) {
 
     require('pygmentize-bundled')({ lang: lang, format: 'html' }, code, function(err, result){
-      console.log(err, result)
       callback(err, result.toString())
     });
 
