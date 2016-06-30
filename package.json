@@ -1,0 +1,88 @@
+{
+  "_args": [
+    [
+      "yaml-markdown-loader@2.2.0",
+      "/Users/zavalit/Projects/phping.me/code/www/front"
+    ]
+  ],
+  "_from": "yaml-markdown-loader@2.2.0",
+  "_id": "yaml-markdown-loader@2.2.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/yaml-markdown-loader",
+  "_nodeVersion": "5.10.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/yaml-markdown-loader-2.2.0.tgz_1463048629018_0.3770610233768821"
+  },
+  "_npmUser": {
+    "email": "zavalit@gmail.com",
+    "name": "zavalit"
+  },
+  "_npmVersion": "3.8.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "yaml-markdown-loader",
+    "raw": "yaml-markdown-loader@2.2.0",
+    "rawSpec": "2.2.0",
+    "scope": null,
+    "spec": "2.2.0",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_shasum": "255cb73a23b063502b6f8502a1c4a91ee14ba41a",
+  "_shrinkwrap": null,
+  "_spec": "yaml-markdown-loader@2.2.0",
+  "_where": "/Users/zavalit/Projects/phping.me/code/www/front",
+  "author": {
+    "name": "Seva Dolgopolov"
+  },
+  "dependencies": {
+    "js-yaml": "^3.4.6",
+    "json-loader": "^0.5.4",
+    "loader-utils": "^0.2.12",
+    "object-assign": "^4.0.1",
+    "section-marked": "^0.3.5"
+  },
+  "description": "Loader that parses markdown to html as well as document meta information defined in yaml format",
+  "devDependencies": {
+    "eval": "^0.1.1",
+    "expect": "^1.13.4",
+    "memory-fs": "^0.3.0",
+    "mocha": "^2.3.4",
+    "raw-loader": "^0.5.1",
+    "webpack": "^1.12.9"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dist": {
+    "shasum": "255cb73a23b063502b6f8502a1c4a91ee14ba41a",
+    "tarball": "https://registry.npmjs.org/yaml-markdown-loader/-/yaml-markdown-loader-2.2.0.tgz"
+  },
+  "gitHead": "14ec4db0aadb75de646a5d6b5f512ef69955a85f",
+  "keywords": [
+    "makrdow",
+    "yaml",
+    "html",
+    "webpack",
+    "loader"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "zavalit@gmail.com",
+      "name": "zavalit"
+    }
+  ],
+  "name": "yaml-markdown-loader",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "mocha test/spec.js"
+  },
+  "version": "2.2.0"
+}
