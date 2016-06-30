@@ -1,8 +1,8 @@
 var marked = require("section-marked"),
     loaderUtils = require("loader-utils"),
-    coursesPygmentHighlight = require("./repl-render.js").coursesPygmentHighlight,
-    pygmentHighlight = require("./repl-render.js").pygmentHighlight,
-    replCodeExtension = require("./repl-render.js").replCodeExtension,
+    coursesPygmentHighlight = require("./task-render.js").coursesPygmentHighlight,
+    pygmentHighlight = require("./task-render.js").pygmentHighlight,
+    taskDataExtension = require("./task-render.js").taskDataExtension,
     splitByMeta = require('./yaml-render.js').splitByMeta;
 
 Object.assign = Object.assign || require('object-assign');
@@ -10,15 +10,15 @@ Object.assign = Object.assign || require('object-assign');
 
 module.exports = function (markdownString) {
 
-    var loaderCallback = this.async();
+  var loaderCallback = this.async();
 
-    var options = buildOptions(this.query);
+  var options = buildOptions(this.query);
 
-    var data = splitByMeta(markdownString, /^---([\s\S]*?)---/)
+  var data = splitByMeta(markdownString, /^---([\s\S]*?)---/)
 
-    var sp = new stringProcessor(data.meta, data.tail);
+  var sp = new stringProcessor(data.meta, data.tail);
 
-    sp.exec(options, loaderCallback)
+  sp.exec(options, loaderCallback)
 
 };
 
