@@ -35,6 +35,7 @@ function taskDataExtension(code, lang, escaped) {
       var data = splitByMeta(code);
       markup = '<div id="task-data-'+ idSuffix
         + '" class="task-data" data-meta="'+ escapeJson(JSON.stringify(data.meta)) +'">'
+        + escapeContent(data.tail)
         + '\n</div>';
 
       break;
