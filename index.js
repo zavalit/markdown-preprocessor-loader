@@ -2,7 +2,7 @@ var marked = require("section-marked"),
     loaderUtils = require("loader-utils"),
     coursesPygmentHighlight = require("./task-render.js").coursesPygmentHighlight,
     pygmentHighlight = require("./task-render.js").pygmentHighlight,
-    taskDataExtension = require("./task-render.js").taskDataExtension,
+    taskDataExtension = require("./task-render").taskDataExtension,
     splitByMeta = require('./yaml-render.js').splitByMeta;
 
 Object.assign = Object.assign || require('object-assign');
@@ -33,7 +33,8 @@ function buildOptions(query)
   options = Object.assign({}, options, query);
 
   if(options.codeRenderer){
-    options.renderer.code = eval(options.codeRenderer);
+    var renderer = require('./../../yaml-markdown-loader-extentions/'+options.codeRenderer);
+    options.renderer.code = renderer.default;
   }
   if(options.highlight){
     options.highlight = eval(options.highlight)

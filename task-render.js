@@ -52,7 +52,6 @@ function taskDataExtension(code, lang, escaped) {
 
 }
 
-
 function getIdSuffix(code){
   var idSuffix = getCodeIndex();
 

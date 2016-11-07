@@ -46,7 +46,27 @@ module: {
 }
 ```
 
-### To Do
+### Code Render Extensions
 
- - enable loader queries
+Sometime you want to introduce new languages for markdown code blocks, to achive this you have to provide filename of a custom renderer in loader query
+
+```js
+  {test: /\.md$/, loader: 'json!yaml-markdown?codeRenderer=customLangExtension'}
+```
+
+and implement a file in a following location: ```<your_project_folder>/yaml-markdown-loader-extentions/<codeRenderer>.js```
+
+The implementation of this file have to provide a function that takes 3 arguments:
+  - code
+  - lang
+  - callback (optional)
+
+```js
+export default  (code, lang, escaped) => {
+  return <markup>you need</markup>
+}
+
+```
+
+### To Do
  - enable markdown custom options
