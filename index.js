@@ -36,6 +36,10 @@ function buildOptions(query)
     var renderer = require('./../../yaml-markdown-loader-extentions/'+options.codeRenderer);
     options.renderer.code = renderer.default;
   }
+  if(options.headerMeta){
+    var renderer = require('./../../yaml-markdown-loader-extentions/'+options.headerMeta);
+    options.renderer.headerMeta = renderer.default;
+  }
   if(options.highlight){
     options.highlight = eval(options.highlight)
   }else{
